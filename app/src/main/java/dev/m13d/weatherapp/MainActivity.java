@@ -22,6 +22,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final String FONT_FILENAME = "fonts/weather.ttf";
 
     private AppCache appCache;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onCreate");
+
 
         appCache = new AppCache(this);
         weatherFont = Typeface.createFromAsset(getAssets(), FONT_FILENAME);
@@ -59,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.weather, menu);
+		Toast.makeText(getApplicationContext(), "OnCreateOptionMenu", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "OnCreateOptionMenu");
         return true;
     }
 
     //Ловим нажатие кнопки меню
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+		Toast.makeText(getApplicationContext(), "OnOptionItemSelected", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "OnOptionItemSelected");
         if (item.getItemId() == R.id.change_city) {
             showInputDialog();
             return true;
@@ -93,10 +101,14 @@ public class MainActivity extends AppCompatActivity {
     public void changeCity(String city) {
         updateWeatherData(city);
         appCache.saveCity(city);
+		Toast.makeText(getApplicationContext(), "CityHasBeenChanged", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "CityHasBeenChanged");
     }
 
     //Обновление/загрузка погодных данных
     private void updateWeatherData(final String city) {
+		Toast.makeText(getApplicationContext(), "UpdateWeather", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "UpdateWeather");
         new Thread() {//Отдельный поток для запроса на сервер
             public void run() {
                 final JSONObject json = ForecastLoader.getJsonData(city);
@@ -105,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             Toast.makeText(getApplicationContext(), getString(R.string.place_not_found),
                                     Toast.LENGTH_LONG).show();
+                            Log.d(TAG, getString(R.string.place_not_found));
                         }
                     });
                 } else {
@@ -120,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Обработка загруженных данных и обновление UI
     private void renderWeather(JSONObject json) {
+		Toast.makeText(getApplicationContext(), "RenderWeather", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "RenderWeather");
         Log.d("Log", "json " + json.toString());
         try {
             cityTextView.setText(json.getString("name").toUpperCase(Locale.US) +
@@ -189,5 +204,42 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         weatherIcon.setText(icon);
+		Toast.makeText(getApplicationContext(), "SetWeatherIcon", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "SetWeatherIcon");
+    }
+	
+	@Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(getApplicationContext(), "onPause", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(getApplicationContext(), "onRestart", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(), "onStop", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStop");
     }
 }
