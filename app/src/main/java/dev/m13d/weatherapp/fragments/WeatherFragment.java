@@ -2,6 +2,7 @@ package dev.m13d.weatherapp.fragments;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,9 @@ import android.widget.ImageView;
 
 import dev.m13d.weatherapp.R;
 
-public class CoatOfArmsFragment extends Fragment {
-    public static CoatOfArmsFragment create(int index) {
-        CoatOfArmsFragment f = new CoatOfArmsFragment();    // создание
+public class WeatherFragment extends Fragment {
+    public static WeatherFragment create(int index) {
+        WeatherFragment f = new WeatherFragment();    // создание
 
         // Передача параметра
         Bundle args = new Bundle();
@@ -28,7 +29,7 @@ public class CoatOfArmsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Определить какой герб надо показать, и показать его
         ImageView coatOfArms = new ImageView(getActivity());

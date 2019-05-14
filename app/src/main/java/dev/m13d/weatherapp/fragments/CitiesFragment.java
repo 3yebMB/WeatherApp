@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import dev.m13d.weatherapp.CoatOfArmsActivity;
+import dev.m13d.weatherapp.WeatherActivity;
 import dev.m13d.weatherapp.R;
 
 // Фрагмент выбора города из списка
@@ -28,7 +28,7 @@ public class CitiesFragment extends Fragment {
 
     // При создании фрагмента укажем его макет
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
@@ -101,17 +101,17 @@ public class CitiesFragment extends Fragment {
             listView.setItemChecked(currentPosition, true);
 
             // Проверим, что фрагмент с гербом существует в activity
-            CoatOfArmsFragment detail = (CoatOfArmsFragment)
-                    getFragmentManager().findFragmentById(R.id.coat_of_arms);
+            WeatherFragment detail = (WeatherFragment)
+                    getFragmentManager().findFragmentById(R.id.weather);
 
             // Если есть необходимость, то выведем герб
             if (detail == null || detail.getIndex() != currentPosition) {
                 // Создаем новый фрагмент с текущей позицией для вывода герба
-                detail = CoatOfArmsFragment.create(currentPosition);
+                detail = WeatherFragment.create(currentPosition);
 
                 // Выполняем транзакцию по замене фрагмента
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.coat_of_arms, detail);  // замена фрагмента
+                ft.replace(R.id.weather, detail);  // замена фрагмента
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 //ft.addToBackStack(null);
                 ft.addToBackStack("Some_Key");
@@ -120,7 +120,7 @@ public class CitiesFragment extends Fragment {
         } else {
             // Если нельзя вывести герб рядом, откроем вторую activity
             Intent intent = new Intent();
-            intent.setClass(getActivity(), CoatOfArmsActivity.class);
+            intent.setClass(getActivity(), WeatherActivity.class);
             // и передадим туда параметры
             intent.putExtra("index", currentPosition);
             startActivity(intent);
