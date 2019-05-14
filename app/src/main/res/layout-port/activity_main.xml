@@ -9,7 +9,8 @@
 
     <!-- в портретной ориентации у activity только один фрагмент -->
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        tools:ignore="RedundantNamespace,UselessParent">
         <fragment android:name="dev.m13d.weatherapp.fragments.CitiesFragment"
             android:id="@+id/cities"
             android:layout_width="match_parent" android:layout_height="match_parent" />

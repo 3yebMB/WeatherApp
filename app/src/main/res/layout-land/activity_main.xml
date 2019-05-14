@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingDefaultResource">
+    tools:ignore="DisableBaselineAlignment,MissingDefaultResource">
 
     <!-- Фрагмент с выбором городов -->
     <fragment android:name="dev.m13d.weatherapp.fragments.CitiesFragment"
@@ -16,7 +16,7 @@
 
     <!-- Здесь будет герб выбранного города -->
     <FrameLayout
-        android:id="@+id/coat_of_arms"
+        android:id="@+id/weather"
         android:layout_width="0px"
         android:layout_height="match_parent"
         android:layout_weight="1"
