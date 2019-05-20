@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- это макет для альбомной ориентации -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="DisableBaselineAlignment,MissingDefaultResource">
+
+    <!-- Фрагмент с выбором городов -->
+    <fragment android:name="dev.m13d.weatherapp.fragments.CitiesFragment"
+        android:id="@+id/cities"
+        android:layout_weight="1"
+        android:layout_width="0px"
+        android:layout_height="match_parent" />
+
+    <!-- Здесь будет герб выбранного города -->
+    <FrameLayout
+        android:id="@+id/weather"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?android:attr/detailsElementBackground"/>
+
+</LinearLayout>
