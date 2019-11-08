@@ -2,7 +2,7 @@ package dev.m13d.weatherapp;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import dev.m13d.weatherapp.fragments.WeatherFragment;
 
